@@ -35,11 +35,28 @@
 
             foreach (var student in liststud)
             {
-                Console.WriteLine(student.Jmeno+" --- "+student.Body);
+                //Console.WriteLine(student.Jmeno+" - "+student.Body);
+                Console.WriteLine(student.Popis);
             }
+
+            Console.WriteLine();
+            Console.WriteLine();
+
+            Console.WriteLine("Počet" + liststud.Count);
+
+            //Console.WriteLine("Počet bodů" + liststud.Sum(VyberBody))
+
+
+            Console.WriteLine("Počet bodů" + liststud.Sum(x => x.Body));
+
+            Console.WriteLine("Počet bodů pro studenty s více než 14 body" + liststud.Where(x => x.Body > 14).Sum(x => x.Body));
+
+            var vybrani = liststud.Where(x => x.Body > 14).ToList();
+            vybrani .ForEach(x => Console.WriteLine(x.Popis));
         }
     }
 
+  
     public class Student
         {   
             public Student() { }
@@ -50,6 +67,9 @@
             }
             public string? Jmeno { get; set; }
             public int Body { get; set; }
+
+            public string? Popis => Jmeno + " - " + Body;
+            
         }
        
 
